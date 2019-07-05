@@ -46,7 +46,7 @@ func main() {
 [5] -- Salir
 ----->	`
 	var eleccion int
-	var c Videojuego
+	var c base.Producto
 	for eleccion != 5 {
 		fmt.Print(menu)
 		fmt.Scanln(&eleccion)
@@ -57,63 +57,129 @@ func main() {
 			if scanner.Scan() {
 				c.Nombre = scanner.Text()
 			}
-			fmt.Println("Genero:")
-			if scanner.Scan() {
-				c.Genero = scanner.Text()
-			}
-			fmt.Println("Precio:")
-			if scanner.Scan() {
-				c.Precio = scanner.Text()
-			}
-			err := insertar(c)
-			if err != nil {
-				fmt.Printf("Error insertando: %v", err)
-			} else {
-				fmt.Println("Insertado correctamente")
-			}
+			//fmt.Println("Genero:")
+			//if scanner.Scan() {
+			//	c.Genero = scanner.Text()
+			//}
+			//fmt.Println("Precio:")
+			//if scanner.Scan() {
+			//	c.Precio = scanner.Text()
+			//}
+			//err := insertar(c)
+			//if err != nil {
+			//	fmt.Printf("Error insertando: %v", err)
+			//} else {
+			//	fmt.Println("Insertado correctamente")
+			//}
 		case 2:
-			contactos, err := obtenerContactos()
-			if err != nil {
-				fmt.Printf("Error obteniendo contactos: %v", err)
-			} else {
-				for _, contacto := range contactos {
-					fmt.Println("====================")
-					fmt.Printf("Id: %d\n", contacto.Id)
-					fmt.Printf("Nombre: %s\n", contacto.Nombre)
-					fmt.Printf("Genero: %s\n", contacto.Genero)
-					fmt.Printf("Precio: %s\n", contacto.Precio)
+			fmt.Println("Lista de opciones:" +
+				"\n 1 Mostrar Tabla de Productos" +
+				"\n 2 Mostrar Tabla de Generos" +
+				"\n 3 Mostrar Tabla de Empleados" +
+				"\n 4 Mostrar Tabla de Clientes" +
+				"\n 5 Mostrar Tabla de Proveedores" +
+				"\n 6 Mostrar Tabla de Pedidos" +
+				"\n 7 Mostrar Tabla de Detalle de Pedidos")
+			var opcion, buscar string
+			fmt.Scanf("%s", &opcion)
+			switch opcion {
+			case "1":
+				fmt.Println("Desea buscar una ID en especifico?, por favor insertela, si no es el caso, Presione Enter\n")
+				fmt.Scanf("%s", &buscar)
+				productos, err := base.ObtenerProductos(buscar)
+				if err != nil {
+					fmt.Printf("Error obteniendo contactos: %v", err)
+				} else {
+					base.ImprimirProducto(productos)
 				}
+			case "2":
+				fmt.Println("Desea buscar una ID en especifico?, por favor insertela, si no es el caso, Presione Enter\n")
+				fmt.Scanf("%s", &buscar)
+				Generos, err := base.ObtenerGenero(buscar)
+				if err != nil {
+					fmt.Printf("Error obteniendo contactos: %v", err)
+				} else {
+					base.ImprimirGeneros(Generos)
+				}
+			case "3":
+				fmt.Println("Desea buscar una ID en especifico?, por favor insertela, si no es el caso, Presione Enter\n")
+				fmt.Scanf("%s", &buscar)
+				empleados, err := base.ObtenerEmpleados(buscar)
+				if err != nil {
+					fmt.Printf("Error obteniendo contactos: %v", err)
+				} else {
+					base.ImprimirEmpleados(empleados)
+				}
+			case "4":
+				fmt.Println("Desea buscar una ID en especifico?, por favor insertela, si no es el caso, Presione Enter\n")
+				fmt.Scanf("%s", &buscar)
+				clientes, err := base.ObtenerClientes(buscar)
+				if err != nil {
+					fmt.Printf("Error obteniendo contactos: %v", err)
+				} else {
+					base.ImprimirClientes(clientes)
+				}
+			case "5":
+				fmt.Println("Desea buscar una ID en especifico?, por favor insertela, si no es el caso, Presione Enter\n")
+				fmt.Scanf("%s", &buscar)
+				proveedores, err := base.ObtenerProveedores(buscar)
+				if err != nil {
+					fmt.Printf("Error obteniendo contactos: %v", err)
+				} else {
+					base.ImprimirProveedores(proveedores)
+				}
+			case "6":
+				fmt.Println("Desea buscar una ID en especifico?, por favor insertela, si no es el caso, Presione Enter\n")
+				fmt.Scanf("%s", &buscar)
+				pedidos, err := base.ObtenerPedidos(buscar)
+				if err != nil {
+					fmt.Printf("Error obteniendo contactos: %v", err)
+				} else {
+					base.ImprimirPedidos(pedidos)
+				}
+			case "7":
+				fmt.Println("Desea buscar una ID en especifico?, por favor insertela, si no es el caso, Presione Enter\n")
+				fmt.Scanf("%s", &buscar)
+				detalle_pedidos, err := base.ObtenerDetalle_Pedidos(buscar)
+				if err != nil {
+					fmt.Printf("Error obteniendo contactos: %v", err)
+				} else {
+					base.ImprimirDetalle_Pedidos(detalle_pedidos)
+				}
+			default:
+				continue
 			}
+
 		case 3:
-			fmt.Println("Ingresa el id:")
-			fmt.Scanln(&c.Id)
-			fmt.Println("Ingresa el nuevo nombre:")
-			if scanner.Scan() {
-				c.Nombre = scanner.Text()
-			}
-			fmt.Println("Ingresa la nueva dirección:")
-			if scanner.Scan() {
-				c.Genero = scanner.Text()
-			}
-			fmt.Println("Ingresa el nuevo correo electrónico:")
-			if scanner.Scan() {
-				c.Precio = scanner.Text()
-			}
-			err := actualizar(c)
-			if err != nil {
-				fmt.Printf("Error actualizando: %v", err)
-			} else {
-				fmt.Println("Actualizado correctamente")
-			}
+			//fmt.Println("Ingresa el id:")
+			//fmt.Scanln(&c.Id)
+			//fmt.Println("Ingresa el nuevo nombre:")
+			//if scanner.Scan() {
+			//	c.Nombre = scanner.Text()
+			//}
+			//fmt.Println("Ingresa la nueva dirección:")
+			//if scanner.Scan() {
+			//	c.Genero = scanner.Text()
+			//}
+			//fmt.Println("Ingresa el nuevo correo electrónico:")
+			//if scanner.Scan() {
+			//	c.Precio = scanner.Text()
+			//}
+			//err := actualizar(c)
+			//if err != nil {
+			//	fmt.Printf("Error actualizando: %v", err)
+			//} else {
+			//	fmt.Println("Actualizado correctamente")
+			//}
 		case 4:
 			fmt.Println("Ingresa el ID del contacto que deseas eliminar:")
 			fmt.Scanln(&c.Id)
-			err := eliminar(c)
-			if err != nil {
-				fmt.Printf("Error eliminando: %v", err)
-			} else {
-				fmt.Println("Eliminado correctamente")
-			}
+			//err := eliminar(c)
+			//if err != nil {
+			//	fmt.Printf("Error eliminando: %v", err)
+			//} else {
+			//	fmt.Println("Eliminado correctamente")
+			//}
 		}
 	}
 }
@@ -157,38 +223,6 @@ func insertar(c Videojuego) (e error) {
 		return err
 	}
 	return nil
-}
-
-func obtenerContactos() ([]Videojuego, error) {
-	contactos := []Videojuego{}
-	db, err := obtenerBaseDeDatos()
-	if err != nil {
-		return nil, err
-	}
-	defer db.Close()
-	filas, err := db.Query("SELECT id, nombre, genero, precio FROM administrador")
-
-	if err != nil {
-		return nil, err
-	}
-	// Si llegamos aquí, significa que no ocurrió ningún error
-	defer filas.Close()
-
-	// Aquí vamos a "mapear" lo que traiga la consulta en el while de más abajo
-	var c Videojuego
-
-	// Recorrer todas las filas, en un "while"
-	for filas.Next() {
-		err = filas.Scan(&c.Id, &c.Nombre, &c.Genero, &c.Precio)
-		// Al escanear puede haber un error
-		if err != nil {
-			return nil, err
-		}
-		// Y si no, entonces agregamos lo leído al arreglo
-		contactos = append(contactos, c)
-	}
-	// Vacío o no, regresamos el arreglo de contactos
-	return contactos, nil
 }
 
 func actualizar(c Videojuego) error {
