@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="581da884-2dcc-4fb4-95a5-c83e072dd9f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/base.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/base.go" beforeDir="false" afterPath="$PROJECT_DIR$/base/base.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,13 +12,27 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1394">
-              <caret line="82" column="37" lean-forward="true" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
+            <state relative-caret-position="555">
+              <caret line="330" column="36" lean-forward="true" selection-start-line="330" selection-start-column="36" selection-end-line="330" selection-end-column="36" />
               <folding>
                 <element signature="e#75#477#0" expanded="true" />
               </folding>
@@ -27,13 +40,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/base/base.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="675">
+              <caret line="172" column="40" lean-forward="true" selection-start-line="172" selection-start-column="40" selection-end-line="172" selection-end-column="40" />
               <folding>
-                <element signature="e#13#415#0" expanded="true" />
+                <element signature="e#14#169#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -53,7 +66,19 @@
       <find>agenda</find>
       <find>admin</find>
       <find>admin_</find>
+      <find>bufio</find>
+      <find>Inserta</find>
+      <find>eliminar</find>
+      <find>inser</find>
+      <find>Clientes</find>
+      <find>Mostrar</find>
+      <find>Eliminar</find>
     </findStrings>
+    <replaceStrings>
+      <replace>Inserte</replace>
+      <replace>Insertar en</replace>
+      <replace>Eliminar desde</replace>
+    </replaceStrings>
   </component>
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
@@ -62,16 +87,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main.go" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6ce2d2f2-a849-43ca-becc-bb0eab773c28/console.sql" />
         <option value="$PROJECT_DIR$/base/base.go" />
+        <option value="$PROJECT_DIR$/main.go" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="410" />
-    <option name="y" value="-10" />
-    <option name="width" value="1215" />
-    <option name="height" value="730" />
+    <option name="x" value="-7" />
+    <option name="width" value="697" />
+    <option name="height" value="745" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -83,12 +108,12 @@
         <subPane>
           <expand>
             <path>
-              <item name="proyectobasealternativo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="proyectobasealternativo" type="462c0819:PsiDirectoryNode" />
+              <item name="proyectoalternativo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proyectoalternativo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="proyectobasealternativo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="proyectobasealternativo" type="462c0819:PsiDirectoryNode" />
+              <item name="proyectoalternativo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proyectoalternativo" type="462c0819:PsiDirectoryNode" />
               <item name="base" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -98,15 +123,25 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.console.LAST_STATE" value="false" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/base" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\SlimeS\GolandProjects\proyectoalternativo\base" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -135,24 +170,34 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16040269" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07261725" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Console" weight="0.32850242" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31303117" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3188406" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32850242" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Floobits" order="9" weight="0.3286119" />
-      <window_info anchor="bottom" id="Database Changes" order="10" />
+      <window_info anchor="bottom" id="Floobits" order="9" weight="0.32850242" />
+      <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32850242" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -160,37 +205,73 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16263238" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Console" order="0" weight="0.32850242" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32850242" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.31239936" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.32850242" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Floobits" order="10" weight="0.32850242" />
+      <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32850242" />
+      <window_info anchor="bottom" id="Terminal" order="12" />
+      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="archivos extra" />
+    <MESSAGE value="Base" />
+    <MESSAGE value="Buscar y Mostrar Base" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buscar y Mostrar Base" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../main.go">
+    <entry file="file://$PROJECT_DIR$/../main.go" />
+    <entry file="file://$PROJECT_DIR$/base/slices.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        <state relative-caret-position="-2">
           <folding>
-            <element signature="e#14#46#0" expanded="true" />
+            <element signature="e#14#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6ce2d2f2-a849-43ca-becc-bb0eab773c28/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="31" lean-forward="true" selection-start-column="31" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/base/base.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="172" column="40" lean-forward="true" selection-start-line="172" selection-start-column="40" selection-end-line="172" selection-end-column="40" />
+          <folding>
+            <element signature="e#14#169#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="82" column="37" lean-forward="true" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
+        <state relative-caret-position="555">
+          <caret line="330" column="36" lean-forward="true" selection-start-line="330" selection-start-column="36" selection-end-line="330" selection-end-column="36" />
           <folding>
             <element signature="e#75#477#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/base/base.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#13#415#0" expanded="true" />
           </folding>
         </state>
       </provider>
