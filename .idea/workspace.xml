@@ -31,10 +31,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="330" column="36" lean-forward="true" selection-start-line="330" selection-start-column="36" selection-end-line="330" selection-end-column="36" />
+            <state relative-caret-position="143">
+              <caret line="84" column="38" lean-forward="true" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
               <folding>
-                <element signature="e#75#477#0" expanded="true" />
+                <element signature="e#75#319#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/base/base.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="172" column="40" lean-forward="true" selection-start-line="172" selection-start-column="40" selection-end-line="172" selection-end-column="40" />
+            <state relative-caret-position="17">
+              <caret line="187" lean-forward="true" selection-start-line="187" selection-end-line="187" />
               <folding>
                 <element signature="e#14#169#0" expanded="true" />
               </folding>
@@ -69,10 +69,15 @@
       <find>bufio</find>
       <find>Inserta</find>
       <find>eliminar</find>
-      <find>inser</find>
       <find>Clientes</find>
       <find>Mostrar</find>
       <find>Eliminar</find>
+      <find>execdb</find>
+      <find>actualiza</find>
+      <find>inser</find>
+      <find>actuali</find>
+      <find>columnas</find>
+      <find>actua</find>
     </findStrings>
     <replaceStrings>
       <replace>Inserte</replace>
@@ -88,15 +93,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6ce2d2f2-a849-43ca-becc-bb0eab773c28/console.sql" />
-        <option value="$PROJECT_DIR$/base/base.go" />
         <option value="$PROJECT_DIR$/main.go" />
+        <option value="$PROJECT_DIR$/base/base.go" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="697" />
-    <option name="height" value="745" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="410" />
+    <option name="y" value="-10" />
+    <option name="width" value="1215" />
+    <option name="height" value="730" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -108,12 +114,12 @@
         <subPane>
           <expand>
             <path>
-              <item name="proyectoalternativo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="proyectoalternativo" type="462c0819:PsiDirectoryNode" />
+              <item name="proyectobasealternativo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proyectobasealternativo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="proyectoalternativo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="proyectoalternativo" type="462c0819:PsiDirectoryNode" />
+              <item name="proyectobasealternativo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proyectobasealternativo" type="462c0819:PsiDirectoryNode" />
               <item name="base" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -180,16 +186,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07261725" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16442953" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Database Console" weight="0.32850242" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3188406" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3186969" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -200,6 +204,7 @@
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32850242" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="bottom" id="Database Console" order="13" weight="0.32850242" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -249,17 +254,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6ce2d2f2-a849-43ca-becc-bb0eab773c28/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="31" lean-forward="true" selection-start-column="31" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6ce2d2f2-a849-43ca-becc-bb0eab773c28/console.sql" />
     <entry file="file://$PROJECT_DIR$/base/base.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="172" column="40" lean-forward="true" selection-start-line="172" selection-start-column="40" selection-end-line="172" selection-end-column="40" />
+        <state relative-caret-position="17">
+          <caret line="187" lean-forward="true" selection-start-line="187" selection-end-line="187" />
           <folding>
             <element signature="e#14#169#0" expanded="true" />
           </folding>
@@ -268,10 +267,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="330" column="36" lean-forward="true" selection-start-line="330" selection-start-column="36" selection-end-line="330" selection-end-column="36" />
+        <state relative-caret-position="143">
+          <caret line="84" column="38" lean-forward="true" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
           <folding>
-            <element signature="e#75#477#0" expanded="true" />
+            <element signature="e#75#319#0" expanded="true" />
           </folding>
         </state>
       </provider>

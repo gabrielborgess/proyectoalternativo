@@ -245,7 +245,128 @@ func main() {
 			}
 
 		case 3:
-			//Ya estoy hasta el pico, hace esta parte porfa
+			fmt.Println("Lista de opciones:" +
+				"\n 1 Actualizar la Tabla de Productos" +
+				"\n 2 Actualizar la Tabla de Generos" +
+				"\n 3 Actualizar la Tabla de Empleados" +
+				"\n 4 Actualizar la Tabla de Clientes" +
+				"\n 5 Actualizar la Tabla de Proveedores" +
+				"\n 6 Actualizar la Tabla de Pedidos" +
+				"\n 7 Actualizar la Tabla de Detalle de Pedidos")
+			var opcion string
+			fmt.Scanf("%s", &opcion)
+			switch opcion {
+			case "1":
+				var id int
+				estructura := base.Producto{}
+				fmt.Println("Id a cambiar:")
+				fmt.Scanf("%d", &id)
+				fmt.Println("Nombre:")
+				fmt.Scanf("%s", &estructura.Nombre)
+				fmt.Println("Generos:")
+				fmt.Scanf("%s", &estructura.Generos)
+				fmt.Println("Valor (Numero Entero)")
+				fmt.Scanf("%d", &estructura.Valor)
+				fmt.Println("Plataformas:")
+				fmt.Scanf("%s", &estructura.Plataformas)
+				fmt.Println("Proveedor_id (Numero Entero)")
+				fmt.Scanf("%d", &estructura.Proveedor_id)
+				base.Actualizar_sqlp("productos",estructura.Nombre,estructura.Generos,estructura.Valor,estructura.Plataformas,estructura.Proveedor_id,id)
+				fmt.Println("Cambiado con exito")
+
+
+
+				fmt.Println("Cambiado con exito")
+			case "2":
+				var id int
+				estructura := base.Genero{}
+				fmt.Println("Id a cambiar:")
+				fmt.Scanf("%d", &id)
+				fmt.Println("Genero:")
+				fmt.Scanf("%s", &estructura.Tipo)
+				base.Actualizar_sqlg("genero",estructura.Tipo,id)
+				fmt.Println("Cambiado con exito")
+			case "3":
+				var id int
+				estructura := base.Empleado{}
+				fmt.Println("Id a cambiar:")
+				fmt.Scanf("%d", &id)
+				fmt.Println("Rut:")
+				fmt.Scanf("%s", &estructura.Rut)
+				fmt.Println("Nombre:")
+				fmt.Scanf("%s", &estructura.Nombre)
+				fmt.Println("Sueldo (Numero Entero)")
+				fmt.Scanf("%d", &estructura.Sueldo)
+				fmt.Println("Area:")
+				fmt.Scanf("%s", &estructura.Area)
+				fmt.Println("Cargo")
+				fmt.Scanf("%s", &estructura.Cargo)
+				fmt.Println("Direccion")
+				fmt.Scanf("%s", &estructura.Direccion)
+				fmt.Println("Region")
+				fmt.Scanf("%s", &estructura.Region)
+				base.Actualizar_sqle("empleados", estructura.Rut, estructura.Nombre, estructura.Sueldo, estructura.Area, estructura.Cargo, estructura.Direccion, estructura.Region,id)
+				fmt.Println("Cambiado con exito")
+			case "4":
+				estructura := base.Clientes{}
+				var id int
+				fmt.Println("Ingrese id a cambiar:")
+				fmt.Scanf("%d", &id)
+				fmt.Println("Rut:")
+				fmt.Scanf("%s", &estructura.Rut)
+				fmt.Println("Nombre:")
+				fmt.Scanf("%s", &estructura.Nombre)
+				fmt.Println("Telefono:")
+				fmt.Scanf("%s", &estructura.Telefono)
+				fmt.Println("Direccion")
+				fmt.Scanf("%s", &estructura.Direccion)
+				fmt.Println("Region")
+				fmt.Scanf("%s", &estructura.Region)
+				base.Actualizar_sqlc("clientes",estructura.Rut, estructura.Nombre, estructura.Direccion, estructura.Region, estructura.Telefono,id)
+				fmt.Println("Cambiado con exito")
+			case "5":
+				var id int
+				estructura := base.Proveedores{}
+				fmt.Println("Ingrese id a cambiar:")
+				fmt.Scanf("%d", &id)
+				fmt.Println("Nombre:")
+				fmt.Scanf("%s", &estructura.Nombre)
+				fmt.Println("Telefono:")
+				fmt.Scanf("%s", &estructura.Telefono)
+				fmt.Println("Direccion")
+				fmt.Scanf("%s", &estructura.Direccion)
+				base.Actualizar_p("proveedores",estructura.Nombre, estructura.Direccion, estructura.Telefono,id)
+				fmt.Println("Insertado con exito")
+			case "6":
+				var id int
+				estructura := base.Pedidos{}
+				fmt.Println("Ingrese id a cambiar:")
+				fmt.Scanf("%d", &id)
+				fmt.Println("Direccion:")
+				fmt.Scanf("%s", &estructura.Direccion)
+				fmt.Println("Cliente ID (Numero Entero):")
+				fmt.Scanf("%d", &estructura.ClienteID)
+				fmt.Println("Empleado ID (Numero Entero)")
+				fmt.Scanf("%d", &estructura.EmpleadoID)
+				fmt.Println("Valor (Numero Entero):")
+				fmt.Scanf("%d", &estructura.Valor)
+				fmt.Println("Detalle ID (Numero Entero)")
+				fmt.Scanf("%d", &estructura.DetalleID)
+				fmt.Println("Metodo de Pago")
+				fmt.Scanf("%s", &estructura.MetodoPago)
+				base.Actualizar_sqlpe("pedidos",estructura.Direccion, estructura.ClienteID, estructura.EmpleadoID, estructura.Valor, estructura.DetalleID, estructura.MetodoPago,id)
+				fmt.Println("Cambiado con exito")
+			case "7":
+				estructura := base.Detalle_pedidos{}
+				fmt.Println("Id a cambiar(Numero Entero)")
+				fmt.Scanf("%d", &estructura.Id)
+				fmt.Println("Producto_id (Numero Entero)")
+				fmt.Scanf("%d", &estructura.ProductoID)
+				fmt.Println("Cantidad (Numero Entero)")
+				fmt.Scanf("%d", &estructura.Cantidad)
+				base.Actualizar_sqlfi("detalle_pedidos", estructura.ProductoID, estructura.Cantidad,estructura.Id,)
+				fmt.Println("Cambiado con exito")
+			}
 		case 4:
 			fmt.Println("Lista de opciones:" +
 				"\n 1 Eliminar desde Tabla de Productos" +
@@ -327,61 +448,3 @@ func main() {
 		}
 	}
 }
-
-//func eliminar(c Videojuego) error {
-//	db, err := obtenerBaseDeDatos()
-//	if err != nil {
-//		return err
-//	}
-//	defer db.Close()
-//
-//	sentenciaPreparada, err := db.Prepare("DELETE FROM administrador WHERE id = ?")
-//	if err != nil {
-//		return err
-//	}
-//	defer sentenciaPreparada.Close()
-//
-//	_, err = sentenciaPreparada.Exec(c.Id)
-//	if err != nil {
-//		return err
-//	}
-//	return nil
-//}
-//
-//func Inserter(c Videojuego) (e error) {
-//	db, err := obtenerBaseDeDatos()
-//	if err != nil {
-//		return err
-//	}
-//	defer db.Close()
-//
-//	// Preparamos para prevenir inyecciones SQL
-//	sentenciaPreparada, err := db.Prepare("INSERT INTO administrador (nombre, genero, precio) VALUES(?, ?, ?)")
-//	if err != nil {
-//		return err
-//	}
-//	defer sentenciaPreparada.Close()
-//	// Ejecutar sentencia, un valor por cada '?'
-//	_, err = sentenciaPreparada.Exec(c.Nombre, c.Genero, c.Precio)
-//	if err != nil {
-//		return err
-//	}
-//	return nil
-//}
-//
-//func actualizar(c Videojuego) error {
-//	db, err := obtenerBaseDeDatos()
-//	if err != nil {
-//		return err
-//	}
-//	defer db.Close()
-//
-//	sentenciaPreparada, err := db.Prepare("UPDATE administrador SET nombre = ?, genero = ?, precio = ? WHERE id = ?")
-//	if err != nil {
-//		return err
-//	}
-//	defer sentenciaPreparada.Close()
-//	// Pasar argumentos en el mismo orden que la consulta
-//	_, err = sentenciaPreparada.Exec(c.Nombre, c.Genero, c.Precio, c.Id)
-//	return err // Ya sea nil o sea un error, lo manejaremos desde donde hacemos la llamada
-//}
