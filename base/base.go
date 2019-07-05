@@ -12,22 +12,22 @@ import (
 )
 
 type Detalle_pedidos struct {
-	id, producto_id, cantidad int
+	Id, ProductoID, Cantidad int
 }
 
 type Pedidos struct {
-	id, cliente_id, empleado_id, detalle_id, valor int
-	direccion, metodo_pago                         string
+	Id, ClienteID, EmpleadoID, DetalleID, Valor int
+	Direccion, MetodoPago                       string
 }
 
 type Proveedores struct {
-	id                          int
-	nombre, direccion, telefono string
+	Id                          int
+	Nombre, Direccion, Telefono string
 }
 
 type Clientes struct {
-	id                                       int
-	rut, nombre, direccion, region, telefono string
+	Id                                       int
+	Rut, Nombre, Direccion, Region, Telefono string
 }
 
 type Empleado struct {
@@ -82,13 +82,13 @@ func Atributos() ([]string, []string) {
 		"productos",
 		"genero",
 		"proveedores"}
-	atributos := []string{"id integer NOT NULL AUTO_INCREMENT, Rut varchar(255), Nombre varchar(255), Direccion varchar(255), Region varchar(255),telefono varchar(255),PRIMARY KEY (`id`)",
-		"id integer NOT NULL AUTO_INCREMENT, Rut varchar(255), Nombre varchar(255), Sueldo integer, Area varchar(255), Cargo varchar(255), Direccion varchar(255), Region varchar(255),PRIMARY KEY (`id`)",
-		"id integer NOT NULL AUTO_INCREMENT, Direccion varchar(255), cliente_id integer, empleado_id integer, valor integer, detalle_id integer, metodo_pago varchar(255),PRIMARY KEY (`id`)",
-		"id integer, producto_id integer, cantidad integer",
-		"id integer NOT NULL AUTO_INCREMENT, Nombre varchar(255),generos varchar(255), valor integer, plataformas varchar(255), proveedor_id integer, estrellas integer,PRIMARY KEY (`id`)",
-		"id integer NOT NULL AUTO_INCREMENT, tipo varchar(255),PRIMARY KEY (`id`)",
-		"id integer NOT NULL AUTO_INCREMENT, Nombre varchar(255), Direccion varchar(255), telefono varchar(255),PRIMARY KEY (`id`)"}
+	atributos := []string{"Id integer NOT NULL AUTO_INCREMENT, Rut varchar(255), Nombre varchar(255), Direccion varchar(255), Region varchar(255),Telefono varchar(255),PRIMARY KEY (`Id`)",
+		"Id integer NOT NULL AUTO_INCREMENT, Rut varchar(255), Nombre varchar(255), Sueldo integer, Area varchar(255), Cargo varchar(255), Direccion varchar(255), Region varchar(255),PRIMARY KEY (`Id`)",
+		"Id integer NOT NULL AUTO_INCREMENT, Direccion varchar(255), ClienteID integer, EmpleadoID integer, Valor integer, DetalleID integer, MetodoPago varchar(255),PRIMARY KEY (`Id`)",
+		"Id integer, ProductoID integer, Cantidad integer",
+		"Id integer NOT NULL AUTO_INCREMENT, Nombre varchar(255),generos varchar(255), Valor integer, plataformas varchar(255), proveedor_id integer, estrellas integer,PRIMARY KEY (`Id`)",
+		"Id integer NOT NULL AUTO_INCREMENT, tipo varchar(255),PRIMARY KEY (`Id`)",
+		"Id integer NOT NULL AUTO_INCREMENT, Nombre varchar(255), Direccion varchar(255), Telefono varchar(255),PRIMARY KEY (`Id`)"}
 	return tablas, atributos
 }
 
@@ -133,11 +133,8 @@ func ObtenerBaseDeDatos() (db *sql.DB, e error) {
 }
 
 // Los valores se separan por coma, la tabla se declara, se utiliza una db ya creada para evitar las sobreconexiones a base y se confirma el cierre o no al final de ejecución
-func Insertar_sql(tabla string, columnas string, valores string, db *sql.DB, cerrar bool) {
+func Insertar_sql(tabla string, columnas string, valores string) {
 	//
-	if cerrar {
-		defer db.Close()
-	}
 	preparado := ""
 	iterar := strings.Split(valores, ",")
 	for i := range iterar {
@@ -161,13 +158,13 @@ func Insertar_sql(tabla string, columnas string, valores string, db *sql.DB, cer
 	Execdb(fmt.Sprintf("INSERT INTO `%s` (%s) VALUES(%s);", tabla, columnas, preparado))
 	return
 }
-func eliminar_sql(tabla string, id string) error {
+func Eliminar_sql(tabla string, id string) error {
 	db, err := ObtenerBaseDeDatos()
 	if err != nil {
 		return err
 	}
 	defer db.Close()
-	sentenciaPreparada, err := db.Prepare(fmt.Sprint("DELETE FROM `%s` WHERE id=%s", tabla, id))
+	sentenciaPreparada, err := db.Prepare(fmt.Sprintf("DELETE FROM `%s` WHERE Id=?", tabla))
 	if err != nil {
 		return err
 	}
@@ -188,7 +185,7 @@ func ObtenerProductos(buscarid string) ([]Producto, error) {
 	defer db.Close()
 	var filas *sql.Rows
 	if buscarid != "" {
-		filas, err = db.Query(fmt.Sprintf("SELECT * FROM productos where id=%s", buscarid))
+		filas, err = db.Query(fmt.Sprintf("SELECT * FROM productos where Id=%s", buscarid))
 	} else {
 		filas, err = db.Query("SELECT * FROM productos")
 	}
@@ -229,7 +226,7 @@ func ObtenerGenero(buscarid string) ([]Genero, error) {
 	defer db.Close()
 	var filas *sql.Rows
 	if buscarid != "" {
-		filas, err = db.Query(fmt.Sprintf("SELECT * FROM genero where id=%s", buscarid))
+		filas, err = db.Query(fmt.Sprintf("SELECT * FROM genero where Id=%s", buscarid))
 	} else {
 		filas, err = db.Query("SELECT * FROM genero")
 	}
@@ -265,7 +262,7 @@ func ObtenerEmpleados(buscarid string) ([]Empleado, error) {
 	defer db.Close()
 	var filas *sql.Rows
 	if buscarid != "" {
-		filas, err = db.Query(fmt.Sprintf("SELECT * FROM empleados where id=%s", buscarid))
+		filas, err = db.Query(fmt.Sprintf("SELECT * FROM empleados where Id=%s", buscarid))
 	} else {
 		filas, err = db.Query("SELECT * FROM empleados")
 	}
@@ -308,7 +305,7 @@ func ObtenerClientes(buscarid string) ([]Clientes, error) {
 	defer db.Close()
 	var filas *sql.Rows
 	if buscarid != "" {
-		filas, err = db.Query(fmt.Sprintf("SELECT * FROM clientes where id=%s", buscarid))
+		filas, err = db.Query(fmt.Sprintf("SELECT * FROM clientes where Id=%s", buscarid))
 	} else {
 		filas, err = db.Query("SELECT * FROM clientes")
 	}
@@ -319,7 +316,7 @@ func ObtenerClientes(buscarid string) ([]Clientes, error) {
 	defer filas.Close()
 	var cliente Clientes
 	for filas.Next() {
-		err = filas.Scan(&cliente.id, &cliente.rut, &cliente.nombre, &cliente.direccion, &cliente.region, &cliente.telefono)
+		err = filas.Scan(&cliente.Id, &cliente.Rut, &cliente.Nombre, &cliente.Direccion, &cliente.Region, &cliente.Telefono)
 		if err != nil {
 			return nil, err
 		}
@@ -331,12 +328,12 @@ func ObtenerClientes(buscarid string) ([]Clientes, error) {
 func ImprimirClientes(generos []Clientes) {
 	for _, genero := range generos {
 		fmt.Println("====================")
-		fmt.Printf("Id: %d\n", genero.id)
-		fmt.Printf("Rut: %s\n", genero.rut)
-		fmt.Printf("Nombre: %s\n", genero.nombre)
-		fmt.Printf("Direccion: %s\n", genero.direccion)
-		fmt.Printf("Region: %s\n", genero.region)
-		fmt.Printf("Telefono: %s\n", genero.telefono)
+		fmt.Printf("Id: %d\n", genero.Id)
+		fmt.Printf("Rut: %s\n", genero.Rut)
+		fmt.Printf("Nombre: %s\n", genero.Nombre)
+		fmt.Printf("Direccion: %s\n", genero.Direccion)
+		fmt.Printf("Region: %s\n", genero.Region)
+		fmt.Printf("Telefono: %s\n", genero.Telefono)
 	}
 }
 func ObtenerProveedores(buscarid string) ([]Proveedores, error) {
@@ -348,7 +345,7 @@ func ObtenerProveedores(buscarid string) ([]Proveedores, error) {
 	defer db.Close()
 	var filas *sql.Rows
 	if buscarid != "" {
-		filas, err = db.Query(fmt.Sprintf("SELECT * FROM proveedores where id=%s", buscarid))
+		filas, err = db.Query(fmt.Sprintf("SELECT * FROM proveedores where Id=%s", buscarid))
 	} else {
 		filas, err = db.Query("SELECT * FROM proveedores")
 	}
@@ -359,7 +356,7 @@ func ObtenerProveedores(buscarid string) ([]Proveedores, error) {
 	defer filas.Close()
 	var proveedor Proveedores
 	for filas.Next() {
-		err = filas.Scan(&proveedor.id, &proveedor.nombre, &proveedor.direccion, &proveedor.telefono)
+		err = filas.Scan(&proveedor.Id, &proveedor.Nombre, &proveedor.Direccion, &proveedor.Telefono)
 		if err != nil {
 			return nil, err
 		}
@@ -371,10 +368,10 @@ func ObtenerProveedores(buscarid string) ([]Proveedores, error) {
 func ImprimirProveedores(proveedores []Proveedores) {
 	for _, Proveedor := range proveedores {
 		fmt.Println("====================")
-		fmt.Printf("Id: %d\n", Proveedor.id)
-		fmt.Printf("Nombre: %s\n", Proveedor.nombre)
-		fmt.Printf("Direccion: %s\n", Proveedor.direccion)
-		fmt.Printf("Telefono: %s\n", Proveedor.telefono)
+		fmt.Printf("Id: %d\n", Proveedor.Id)
+		fmt.Printf("Nombre: %s\n", Proveedor.Nombre)
+		fmt.Printf("Direccion: %s\n", Proveedor.Direccion)
+		fmt.Printf("Telefono: %s\n", Proveedor.Telefono)
 	}
 }
 
@@ -387,7 +384,7 @@ func ObtenerPedidos(buscarid string) ([]Pedidos, error) {
 	defer db.Close()
 	var filas *sql.Rows
 	if buscarid != "" {
-		filas, err = db.Query(fmt.Sprintf("SELECT * FROM pedido where id=%s", buscarid))
+		filas, err = db.Query(fmt.Sprintf("SELECT * FROM pedido where Id=%s", buscarid))
 	} else {
 		filas, err = db.Query("SELECT * FROM pedido")
 	}
@@ -398,7 +395,7 @@ func ObtenerPedidos(buscarid string) ([]Pedidos, error) {
 	defer filas.Close()
 	var pedido Pedidos
 	for filas.Next() {
-		err = filas.Scan(&pedido.id, &pedido.direccion, &pedido.cliente_id, &pedido.empleado_id, &pedido.valor, &pedido.detalle_id, &pedido.metodo_pago)
+		err = filas.Scan(&pedido.Id, &pedido.Direccion, &pedido.ClienteID, &pedido.EmpleadoID, &pedido.Valor, &pedido.DetalleID, &pedido.MetodoPago)
 		if err != nil {
 			return nil, err
 		}
@@ -410,13 +407,13 @@ func ObtenerPedidos(buscarid string) ([]Pedidos, error) {
 func ImprimirPedidos(pedidos []Pedidos) {
 	for _, pedido := range pedidos {
 		fmt.Println("====================")
-		fmt.Printf("Id: %d\n", pedido.id)
-		fmt.Printf("Direccion: %s\n", pedido.direccion)
-		fmt.Printf("Cliente ID: %d\n", pedido.cliente_id)
-		fmt.Printf("pedido ID: %d\n", pedido.empleado_id)
-		fmt.Printf("Valor: %d\n", pedido.valor)
-		fmt.Printf("Detalle ID: %d\n", pedido.detalle_id)
-		fmt.Printf("Metodo de Pago: %s\n", pedido.metodo_pago)
+		fmt.Printf("Id: %d\n", pedido.Id)
+		fmt.Printf("Direccion: %s\n", pedido.Direccion)
+		fmt.Printf("Cliente ID: %d\n", pedido.ClienteID)
+		fmt.Printf("pedido ID: %d\n", pedido.EmpleadoID)
+		fmt.Printf("Valor: %d\n", pedido.Valor)
+		fmt.Printf("Detalle ID: %d\n", pedido.DetalleID)
+		fmt.Printf("Metodo de Pago: %s\n", pedido.MetodoPago)
 	}
 }
 func ObtenerDetalle_Pedidos(buscarid string) ([]Detalle_pedidos, error) {
@@ -428,7 +425,7 @@ func ObtenerDetalle_Pedidos(buscarid string) ([]Detalle_pedidos, error) {
 	defer db.Close()
 	var filas *sql.Rows
 	if buscarid != "" {
-		filas, err = db.Query(fmt.Sprintf("SELECT * FROM detalle_pedidos where id=%s", buscarid))
+		filas, err = db.Query(fmt.Sprintf("SELECT * FROM detalle_pedidos where Id=%s", buscarid))
 	} else {
 		filas, err = db.Query("SELECT * FROM detalle_pedidos")
 	}
@@ -439,7 +436,7 @@ func ObtenerDetalle_Pedidos(buscarid string) ([]Detalle_pedidos, error) {
 	defer filas.Close()
 	var detallePedidos Detalle_pedidos
 	for filas.Next() {
-		err = filas.Scan(&detallePedidos.id, &detallePedidos.producto_id, &detallePedidos.cantidad)
+		err = filas.Scan(&detallePedidos.Id, &detallePedidos.ProductoID, &detallePedidos.Cantidad)
 		if err != nil {
 			return nil, err
 		}
@@ -451,8 +448,8 @@ func ObtenerDetalle_Pedidos(buscarid string) ([]Detalle_pedidos, error) {
 func ImprimirDetalle_Pedidos(detalle_pedidos []Detalle_pedidos) {
 	for _, detallePedidos := range detalle_pedidos {
 		fmt.Println("====================")
-		fmt.Printf("Id: %d\n", detallePedidos.id)
-		fmt.Printf("Producto ID: %d\n", detallePedidos.producto_id)
-		fmt.Printf("cantidad: %d\n", detallePedidos.cantidad)
+		fmt.Printf("Id: %d\n", detallePedidos.Id)
+		fmt.Printf("Producto ID: %d\n", detallePedidos.ProductoID)
+		fmt.Printf("Cantidad: %d\n", detallePedidos.Cantidad)
 	}
 }

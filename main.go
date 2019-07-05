@@ -6,18 +6,16 @@ package main
 
 import (
 	"./base"
-	"bufio"                            // Leer líneas incluso si tienen espacios
 	"database/sql"                     // Interactuar con bases de datos
 	"fmt"                              // Imprimir mensajes y esas cosas
 	_ "github.com/go-sql-driver/mysql" // La librería que nos permite conectar a MySQL
-	"os"                               // El búfer, para leer desde la terminal con os.Stdin
 )
 
-type Videojuego struct {
-	Nombre, Genero, Precio string
-	Id                     int
-}
-
+//type Videojuego struct {
+//	Nombre, Genero, Precio string
+//	Id                     int
+//}
+// No se usa, esta en base.go
 func obtenerBaseDeDatos() (db *sql.DB, e error) {
 	usuario := "admin_admin"
 	pass := "ganzo10."
@@ -46,31 +44,127 @@ func main() {
 [5] -- Salir
 ----->	`
 	var eleccion int
-	var c base.Producto
 	for eleccion != 5 {
 		fmt.Print(menu)
 		fmt.Scanln(&eleccion)
-		scanner := bufio.NewScanner(os.Stdin)
 		switch eleccion {
 		case 1:
-			fmt.Println("Ingresa el nombre:")
-			if scanner.Scan() {
-				c.Nombre = scanner.Text()
+			fmt.Println("Lista de opciones:" +
+				"\n 1 Insertar en Tabla de Productos" +
+				"\n 2 Insertar en Tabla de Generos" +
+				"\n 3 Insertar en Tabla de Empleados" +
+				"\n 4 Insertar en Tabla de Clientes" +
+				"\n 5 Insertar en Tabla de Proveedores" +
+				"\n 6 Insertar en Tabla de Pedidos" +
+				"\n 7 Insertar en Tabla de Detalle de Pedidos")
+			var opcion string
+			fmt.Scanf("%s", &opcion)
+			switch opcion {
+			case "1":
+				columnas := "Nombre,generos,valor,plataformas,proveedor_id,estrellas"
+				valores := "%s,%s,%d,%s,%d,%d"
+				estructura := base.Producto{}
+				fmt.Println("Nombre:")
+				fmt.Scanf("%s", &estructura.Nombre)
+				fmt.Println("Generos:")
+				fmt.Scanf("%s", &estructura.Generos)
+				fmt.Println("Valor (Numero Entero)")
+				fmt.Scanf("%d", &estructura.Valor)
+				fmt.Println("Plataformas:")
+				fmt.Scanf("%s", &estructura.Plataformas)
+				fmt.Println("Proveedor_id (Numero Entero)")
+				fmt.Scanf("%d", &estructura.Proveedor_id)
+				fmt.Println("Estrellas (Numero Entero)")
+				fmt.Scanf("%d", &estructura.Estrellas)
+				base.Insertar_sql("productos", columnas, fmt.Sprintf(valores, estructura.Nombre, estructura.Generos, estructura.Valor, estructura.Plataformas, estructura.Proveedor_id, estructura.Estrellas))
+				fmt.Println("Insertado con exito")
+			case "2":
+				columnas := "tipo"
+				valores := "%s"
+				estructura := base.Genero{}
+				fmt.Println("Genero:")
+				fmt.Scanf("%s", &estructura.Tipo)
+				base.Insertar_sql("genero", columnas, fmt.Sprintf(valores, estructura.Tipo))
+				fmt.Println("Insertado con exito")
+			case "3":
+				columnas := "Rut,Nombre,Sueldo,Area,Cargo,Direccion,Region"
+				valores := "%s,%s,%d,%s,%s,%s,%s"
+				estructura := base.Empleado{}
+				fmt.Println("Rut:")
+				fmt.Scanf("%s", &estructura.Rut)
+				fmt.Println("Nombre:")
+				fmt.Scanf("%s", &estructura.Nombre)
+				fmt.Println("Sueldo (Numero Entero)")
+				fmt.Scanf("%d", &estructura.Sueldo)
+				fmt.Println("Area:")
+				fmt.Scanf("%s", &estructura.Area)
+				fmt.Println("Cargo")
+				fmt.Scanf("%s", &estructura.Cargo)
+				fmt.Println("Direccion")
+				fmt.Scanf("%s", &estructura.Direccion)
+				fmt.Println("Region")
+				fmt.Scanf("%s", &estructura.Region)
+				base.Insertar_sql("empleados", columnas, fmt.Sprintf(valores, estructura.Rut, estructura.Nombre, estructura.Sueldo, estructura.Area, estructura.Cargo, estructura.Direccion, estructura.Region))
+				fmt.Println("Insertado con exito")
+			case "4":
+				columnas := "Rut,Nombre,Direccion,Region,telefono"
+				valores := "%s,%s,%s,%s,%s"
+				estructura := base.Clientes{}
+				fmt.Println("Rut:")
+				fmt.Scanf("%s", &estructura.Rut)
+				fmt.Println("Nombre:")
+				fmt.Scanf("%s", &estructura.Nombre)
+				fmt.Println("Telefono:")
+				fmt.Scanf("%s", &estructura.Telefono)
+				fmt.Println("Direccion")
+				fmt.Scanf("%s", &estructura.Direccion)
+				fmt.Println("Region")
+				fmt.Scanf("%s", &estructura.Region)
+				base.Insertar_sql("clientes", columnas, fmt.Sprintf(valores, estructura.Rut, estructura.Nombre, estructura.Direccion, estructura.Region, estructura.Telefono))
+				fmt.Println("Insertado con exito")
+			case "5":
+				columnas := "Nombre,Direccion,telefono"
+				valores := "%s,%s,%s"
+				estructura := base.Proveedores{}
+				fmt.Println("Nombre:")
+				fmt.Scanf("%s", &estructura.Nombre)
+				fmt.Println("Telefono:")
+				fmt.Scanf("%s", &estructura.Telefono)
+				fmt.Println("Direccion")
+				fmt.Scanf("%s", &estructura.Direccion)
+				base.Insertar_sql("proveedores", columnas, fmt.Sprintf(valores, estructura.Nombre, estructura.Direccion, estructura.Telefono))
+				fmt.Println("Insertado con exito")
+			case "6":
+				columnas := "Direccion,cliente_id,empleado_id,valor,detalle_id,metodo_pago"
+				valores := "%s,%d,%d,%d,%d,%s"
+				estructura := base.Pedidos{}
+				fmt.Println("Direccion:")
+				fmt.Scanf("%s", &estructura.Direccion)
+				fmt.Println("Cliente ID (Numero Entero):")
+				fmt.Scanf("%d", &estructura.ClienteID)
+				fmt.Println("Empleado ID (Numero Entero)")
+				fmt.Scanf("%d", &estructura.EmpleadoID)
+				fmt.Println("Valor (Numero Entero):")
+				fmt.Scanf("%d", &estructura.Valor)
+				fmt.Println("Detalle ID (Numero Entero)")
+				fmt.Scanf("%d", &estructura.DetalleID)
+				fmt.Println("Metodo de Pago")
+				fmt.Scanf("%s", &estructura.MetodoPago)
+				base.Insertar_sql("pedidos", columnas, fmt.Sprintf(valores, estructura.Direccion, estructura.ClienteID, estructura.EmpleadoID, estructura.Valor, estructura.DetalleID, estructura.MetodoPago))
+				fmt.Println("Insertado con exito")
+			case "7":
+				columnas := "id,producto_id,cantidad"
+				valores := "%d,%d,%d"
+				estructura := base.Detalle_pedidos{}
+				fmt.Println("Id (Numero Entero)")
+				fmt.Scanf("%d", &estructura.Id)
+				fmt.Println("Producto_id (Numero Entero)")
+				fmt.Scanf("%d", &estructura.ProductoID)
+				fmt.Println("Cantidad (Numero Entero)")
+				fmt.Scanf("%d", &estructura.Cantidad)
+				base.Insertar_sql("detalle_pedidos", columnas, fmt.Sprintf(valores, estructura.Id, estructura.ProductoID, estructura.Cantidad))
+				fmt.Println("Insertado con exito")
 			}
-			//fmt.Println("Genero:")
-			//if scanner.Scan() {
-			//	c.Genero = scanner.Text()
-			//}
-			//fmt.Println("Precio:")
-			//if scanner.Scan() {
-			//	c.Precio = scanner.Text()
-			//}
-			//err := insertar(c)
-			//if err != nil {
-			//	fmt.Printf("Error insertando: %v", err)
-			//} else {
-			//	fmt.Println("Insertado correctamente")
-			//}
 		case 2:
 			fmt.Println("Lista de opciones:" +
 				"\n 1 Mostrar Tabla de Productos" +
@@ -151,93 +245,143 @@ func main() {
 			}
 
 		case 3:
-			//fmt.Println("Ingresa el id:")
-			//fmt.Scanln(&c.Id)
-			//fmt.Println("Ingresa el nuevo nombre:")
-			//if scanner.Scan() {
-			//	c.Nombre = scanner.Text()
-			//}
-			//fmt.Println("Ingresa la nueva dirección:")
-			//if scanner.Scan() {
-			//	c.Genero = scanner.Text()
-			//}
-			//fmt.Println("Ingresa el nuevo correo electrónico:")
-			//if scanner.Scan() {
-			//	c.Precio = scanner.Text()
-			//}
-			//err := actualizar(c)
-			//if err != nil {
-			//	fmt.Printf("Error actualizando: %v", err)
-			//} else {
-			//	fmt.Println("Actualizado correctamente")
-			//}
+			//Ya estoy hasta el pico, hace esta parte porfa
 		case 4:
-			fmt.Println("Ingresa el ID del contacto que deseas eliminar:")
-			fmt.Scanln(&c.Id)
-			//err := eliminar(c)
-			//if err != nil {
-			//	fmt.Printf("Error eliminando: %v", err)
-			//} else {
-			//	fmt.Println("Eliminado correctamente")
-			//}
+			fmt.Println("Lista de opciones:" +
+				"\n 1 Eliminar desde Tabla de Productos" +
+				"\n 2 Eliminar desde Tabla de Generos" +
+				"\n 3 Eliminar desde Tabla de Empleados" +
+				"\n 4 Eliminar desde Tabla de Clientes" +
+				"\n 5 Eliminar desde Tabla de Proveedores" +
+				"\n 6 Eliminar desde Tabla de Pedidos" +
+				"\n 7 Eliminar desde Tabla de Detalle de Pedidos")
+			var opcion, buscar string
+			fmt.Scanf("%s", &opcion)
+			switch opcion {
+			case "1":
+				fmt.Println("Inserte la Id a eliminar")
+				_, _ = fmt.Scanf("%s", &buscar)
+				err := base.Eliminar_sql("productos", buscar)
+				if err != nil {
+					fmt.Println("Fallo al eliminar")
+				} else {
+					fmt.Println("Eliminado con exito")
+				}
+			case "2":
+				fmt.Println("Inserte la Id a eliminar")
+				_, _ = fmt.Scanf("%s", &buscar)
+				err := base.Eliminar_sql("genero", buscar)
+				if err != nil {
+					fmt.Println("Fallo al eliminar")
+				} else {
+					fmt.Println("Eliminado con exito")
+				}
+			case "3":
+				fmt.Println("Inserte la Id a eliminar")
+				_, _ = fmt.Scanf("%s", &buscar)
+				err := base.Eliminar_sql("empleados", buscar)
+				if err != nil {
+					fmt.Println("Fallo al eliminar")
+				} else {
+					fmt.Println("Eliminado con exito")
+				}
+			case "4":
+				fmt.Println("Inserte la Id a eliminar")
+				_, _ = fmt.Scanf("%s", &buscar)
+				err := base.Eliminar_sql("clientes", buscar)
+				if err != nil {
+					fmt.Println("Fallo al eliminar")
+				} else {
+					fmt.Println("Eliminado con exito")
+				}
+			case "5":
+				fmt.Println("Inserte la Id a eliminar")
+				_, _ = fmt.Scanf("%s", &buscar)
+				err := base.Eliminar_sql("proovedores", buscar)
+				if err != nil {
+					fmt.Println("Fallo al eliminar")
+				} else {
+					fmt.Println("Eliminado con exito")
+				}
+			case "6":
+				fmt.Println("Inserte la Id a eliminar")
+				_, _ = fmt.Scanf("%s", &buscar)
+				err := base.Eliminar_sql("pedidos", buscar)
+				if err != nil {
+					fmt.Println("Fallo al eliminar")
+				} else {
+					fmt.Println("Eliminado con exito")
+				}
+			case "7":
+				fmt.Println("Inserte la Id a eliminar")
+				_, _ = fmt.Scanf("%s", &buscar)
+				err := base.Eliminar_sql("detalle_pedidos", buscar)
+				if err != nil {
+					fmt.Println("Fallo al eliminar")
+				} else {
+					fmt.Println("Eliminado con exito")
+				}
+			default:
+				continue
+			}
 		}
 	}
 }
 
-func eliminar(c Videojuego) error {
-	db, err := obtenerBaseDeDatos()
-	if err != nil {
-		return err
-	}
-	defer db.Close()
-
-	sentenciaPreparada, err := db.Prepare("DELETE FROM administrador WHERE id = ?")
-	if err != nil {
-		return err
-	}
-	defer sentenciaPreparada.Close()
-
-	_, err = sentenciaPreparada.Exec(c.Id)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func insertar(c Videojuego) (e error) {
-	db, err := obtenerBaseDeDatos()
-	if err != nil {
-		return err
-	}
-	defer db.Close()
-
-	// Preparamos para prevenir inyecciones SQL
-	sentenciaPreparada, err := db.Prepare("INSERT INTO administrador (nombre, genero, precio) VALUES(?, ?, ?)")
-	if err != nil {
-		return err
-	}
-	defer sentenciaPreparada.Close()
-	// Ejecutar sentencia, un valor por cada '?'
-	_, err = sentenciaPreparada.Exec(c.Nombre, c.Genero, c.Precio)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func actualizar(c Videojuego) error {
-	db, err := obtenerBaseDeDatos()
-	if err != nil {
-		return err
-	}
-	defer db.Close()
-
-	sentenciaPreparada, err := db.Prepare("UPDATE administrador SET nombre = ?, genero = ?, precio = ? WHERE id = ?")
-	if err != nil {
-		return err
-	}
-	defer sentenciaPreparada.Close()
-	// Pasar argumentos en el mismo orden que la consulta
-	_, err = sentenciaPreparada.Exec(c.Nombre, c.Genero, c.Precio, c.Id)
-	return err // Ya sea nil o sea un error, lo manejaremos desde donde hacemos la llamada
-}
+//func eliminar(c Videojuego) error {
+//	db, err := obtenerBaseDeDatos()
+//	if err != nil {
+//		return err
+//	}
+//	defer db.Close()
+//
+//	sentenciaPreparada, err := db.Prepare("DELETE FROM administrador WHERE id = ?")
+//	if err != nil {
+//		return err
+//	}
+//	defer sentenciaPreparada.Close()
+//
+//	_, err = sentenciaPreparada.Exec(c.Id)
+//	if err != nil {
+//		return err
+//	}
+//	return nil
+//}
+//
+//func Inserter(c Videojuego) (e error) {
+//	db, err := obtenerBaseDeDatos()
+//	if err != nil {
+//		return err
+//	}
+//	defer db.Close()
+//
+//	// Preparamos para prevenir inyecciones SQL
+//	sentenciaPreparada, err := db.Prepare("INSERT INTO administrador (nombre, genero, precio) VALUES(?, ?, ?)")
+//	if err != nil {
+//		return err
+//	}
+//	defer sentenciaPreparada.Close()
+//	// Ejecutar sentencia, un valor por cada '?'
+//	_, err = sentenciaPreparada.Exec(c.Nombre, c.Genero, c.Precio)
+//	if err != nil {
+//		return err
+//	}
+//	return nil
+//}
+//
+//func actualizar(c Videojuego) error {
+//	db, err := obtenerBaseDeDatos()
+//	if err != nil {
+//		return err
+//	}
+//	defer db.Close()
+//
+//	sentenciaPreparada, err := db.Prepare("UPDATE administrador SET nombre = ?, genero = ?, precio = ? WHERE id = ?")
+//	if err != nil {
+//		return err
+//	}
+//	defer sentenciaPreparada.Close()
+//	// Pasar argumentos en el mismo orden que la consulta
+//	_, err = sentenciaPreparada.Exec(c.Nombre, c.Genero, c.Precio, c.Id)
+//	return err // Ya sea nil o sea un error, lo manejaremos desde donde hacemos la llamada
+//}
