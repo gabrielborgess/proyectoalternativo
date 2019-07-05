@@ -5,6 +5,7 @@
 package main
 
 import (
+	"./base"
 	"bufio"                            // Leer líneas incluso si tienen espacios
 	"database/sql"                     // Interactuar con bases de datos
 	"fmt"                              // Imprimir mensajes y esas cosas
@@ -14,7 +15,7 @@ import (
 
 type Videojuego struct {
 	Nombre, Genero, Precio string
-	Id                                   int
+	Id                     int
 }
 
 func obtenerBaseDeDatos() (db *sql.DB, e error) {
@@ -31,16 +32,12 @@ func obtenerBaseDeDatos() (db *sql.DB, e error) {
 }
 
 func main() {
-	creditos := `==========================================================
-	                CRUD de MySQL y GO
-                                           
-                                __ __          __         
-	.-----.---.-.----.-----|__|  |--.--.--|  |_.-----.
-	|  _  |  _  |   _|-- __|  |  _  |  |  |   _|  -__|
-	|   __|___._|__| |_____|__|_____|___  |____|_____|
-	|__|                            |_____|           
-==========================================================`
-	fmt.Println(creditos)
+	var setup string
+	fmt.Println("Bienvenido, Desea Instalar la base de datos? S/n")
+	fmt.Scanf("%s", &setup)
+	if setup == "s" {
+		base.Base()
+	}
 	menu := `¿Qué deseas hacer?
 [1] -- Insertar
 [2] -- Mostrar
@@ -96,7 +93,7 @@ func main() {
 			}
 			fmt.Println("Ingresa la nueva dirección:")
 			if scanner.Scan() {
-				c.Genero= scanner.Text()
+				c.Genero = scanner.Text()
 			}
 			fmt.Println("Ingresa el nuevo correo electrónico:")
 			if scanner.Scan() {
@@ -120,7 +117,6 @@ func main() {
 		}
 	}
 }
-
 
 func eliminar(c Videojuego) error {
 	db, err := obtenerBaseDeDatos()

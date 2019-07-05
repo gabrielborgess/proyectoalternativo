@@ -42,21 +42,22 @@ func Execdb(query string) { // Usa la funcion que cree yo para hacer las query, 
 }
 
 func Atributos() ([]string, []string) {
-	tablas := []string{"clientes_nombre", "clientes_rut", "clientes_direccion", "empleados_nombre", "empleados_sueldo",
-		"empleados_rut", "empleados_area", "empleados_direccion", "empleados_cargo", "area", "pedidos_direccion",
-		"pedidos_empleado", "pedidos_cliente", "pedidos_detalle", "detalle_pedidos",
-		"productos_nombre", "productos_valor", "productos_proveedor",
-		"productos_genero", "productos_plataforma", "productos_estrellas",
-		"plataforma", "proveedores", "genero", "metodo_pago"}
-	atributos := []string{"id integer, nombre varchar(150)", "id integer, rut integer, dv integer",
-		"id integer, direccion varchar(255), region varchar(150), telefono varchar(12)", "id integer, nombre varchar(255)",
-		"id integer, sueldo integer", "id integer, rut integer, dv integer", "id integer, area_id integer",
-		"id integer, direccion varchar(255), region varchar(150)", "id integer, cargo varchar(255)", "id integer, tipo varchar(255)",
-		"id integer, direccion varchar(255)", "id integer, empleado_id integer", "id integer, cliente_id integer",
-		"id integer, valor integer, detalle_id integer", "id integer, producto_id integer, cantidad integer", "id integer, nombre varchar(255)",
-		"id integer, valor integer", "id integer, proveedor_id integer", "id integer, genero_id integer",
-		"id integer, plataforma_id integer", "id integer, estrellas integer", "id integer, plataforma varchar(25)",
-		"id integer, nombre varchar(255), direccion varchar(255), telefono varchar(12)", "id integer, genero varchar(32)", "id integer, nombre varchar(32)"}
+	tablas := []string{"clientes",
+		"empleados",
+		"pedidos",
+		"detalle_pedidos",
+		"productos",
+		"genero",
+		"genero_juegos",
+		"proveedores"}
+	atributos := []string{"id integer NOT NULL AUTO_INCREMENT, rut varchar(255), nombre varchar(255), direccion varchar(255), region varchar(255),telefono varchar(255),PRIMARY KEY (`id`)",
+		"id integer NOT NULL AUTO_INCREMENT, rut varchar(255), nombre varchar(255), sueldo varchar(255), area varchar(255), cargo varchar(255), direccion varchar(255), region varchar(255),PRIMARY KEY (`id`)",
+		"id integer NOT NULL AUTO_INCREMENT, direccion varchar(255), cliente_id integer, empleado_id integer, valor integer, detalle_id integer, metodo_pago varchar(255),PRIMARY KEY (`id`)",
+		"id integer, producto_id integer, cantidad integer",
+		"id integer NOT NULL AUTO_INCREMENT, nombre varchar(255), valor integer, plataforma varchar(255), proveedor_id integer, estrellas integer,PRIMARY KEY (`id`)",
+		"id integer NOT NULL AUTO_INCREMENT, tipo varchar(255),PRIMARY KEY (`id`)",
+		"id_juego integer, id_tipo integer",
+		"id integer NOT NULL AUTO_INCREMENT, nombre varchar(255), direccion varchar(255), telefono varchar(255),PRIMARY KEY (`id`)"}
 	return tablas, atributos
 }
 
