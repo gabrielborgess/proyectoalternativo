@@ -31,7 +31,7 @@ func obtenerBaseDeDatos() (db *sql.DB, e error) {
 
 func main() {
 	var setup string
-	fmt.Println("Bienvenido, Desea Instalar la base de datos? S/n")
+	fmt.Println("Bienvenido, Desea Instalar la base de datos? s/n")
 	fmt.Scanf("%s", &setup)
 	if setup == "s" {
 		base.Base()
@@ -135,7 +135,7 @@ func main() {
 				base.Insertar_sql("proveedores", columnas, fmt.Sprintf(valores, estructura.Nombre, estructura.Direccion, estructura.Telefono))
 				fmt.Println("Insertado con exito")
 			case "6":
-				columnas := "Direccion,cliente_id,empleado_id,valor,detalle_id,metodo_pago"
+				columnas := "Direccion,ClienteID,EmpleadoID,valor,DetalleID,MetodoPago"
 				valores := "%s,%d,%d,%d,%d,%s"
 				estructura := base.Pedidos{}
 				fmt.Println("Direccion:")
@@ -153,7 +153,7 @@ func main() {
 				base.Insertar_sql("pedidos", columnas, fmt.Sprintf(valores, estructura.Direccion, estructura.ClienteID, estructura.EmpleadoID, estructura.Valor, estructura.DetalleID, estructura.MetodoPago))
 				fmt.Println("Insertado con exito")
 			case "7":
-				columnas := "id,producto_id,cantidad"
+				columnas := "id,productoID,cantidad"
 				valores := "%d,%d,%d"
 				estructura := base.Detalle_pedidos{}
 				fmt.Println("Id (Numero Entero)")
@@ -271,10 +271,8 @@ func main() {
 				fmt.Scanf("%s", &estructura.Plataformas)
 				fmt.Println("Proveedor_id (Numero Entero)")
 				fmt.Scanf("%d", &estructura.Proveedor_id)
-				base.Actualizar_sqlp("productos",estructura.Nombre,estructura.Generos,estructura.Valor,estructura.Plataformas,estructura.Proveedor_id,id)
+				base.Actualizar_sqlp("productos", estructura.Nombre, estructura.Generos, estructura.Valor, estructura.Plataformas, estructura.Proveedor_id, id)
 				fmt.Println("Cambiado con exito")
-
-
 
 				fmt.Println("Cambiado con exito")
 			case "2":
@@ -284,7 +282,7 @@ func main() {
 				fmt.Scanf("%d", &id)
 				fmt.Println("Genero:")
 				fmt.Scanf("%s", &estructura.Tipo)
-				base.Actualizar_sqlg("genero",estructura.Tipo,id)
+				base.Actualizar_sqlg("genero", estructura.Tipo, id)
 				fmt.Println("Cambiado con exito")
 			case "3":
 				var id int
@@ -305,7 +303,7 @@ func main() {
 				fmt.Scanf("%s", &estructura.Direccion)
 				fmt.Println("Region")
 				fmt.Scanf("%s", &estructura.Region)
-				base.Actualizar_sqle("empleados", estructura.Rut, estructura.Nombre, estructura.Sueldo, estructura.Area, estructura.Cargo, estructura.Direccion, estructura.Region,id)
+				base.Actualizar_sqle("empleados", estructura.Rut, estructura.Nombre, estructura.Sueldo, estructura.Area, estructura.Cargo, estructura.Direccion, estructura.Region, id)
 				fmt.Println("Cambiado con exito")
 			case "4":
 				estructura := base.Clientes{}
@@ -322,7 +320,7 @@ func main() {
 				fmt.Scanf("%s", &estructura.Direccion)
 				fmt.Println("Region")
 				fmt.Scanf("%s", &estructura.Region)
-				base.Actualizar_sqlc("clientes",estructura.Rut, estructura.Nombre, estructura.Direccion, estructura.Region, estructura.Telefono,id)
+				base.Actualizar_sqlc("clientes", estructura.Rut, estructura.Nombre, estructura.Direccion, estructura.Region, estructura.Telefono, id)
 				fmt.Println("Cambiado con exito")
 			case "5":
 				var id int
@@ -335,7 +333,7 @@ func main() {
 				fmt.Scanf("%s", &estructura.Telefono)
 				fmt.Println("Direccion")
 				fmt.Scanf("%s", &estructura.Direccion)
-				base.Actualizar_p("proveedores",estructura.Nombre, estructura.Direccion, estructura.Telefono,id)
+				base.Actualizar_p("proveedores", estructura.Nombre, estructura.Direccion, estructura.Telefono, id)
 				fmt.Println("Insertado con exito")
 			case "6":
 				var id int
@@ -354,7 +352,7 @@ func main() {
 				fmt.Scanf("%d", &estructura.DetalleID)
 				fmt.Println("Metodo de Pago")
 				fmt.Scanf("%s", &estructura.MetodoPago)
-				base.Actualizar_sqlpe("pedidos",estructura.Direccion, estructura.ClienteID, estructura.EmpleadoID, estructura.Valor, estructura.DetalleID, estructura.MetodoPago,id)
+				base.Actualizar_sqlpe("pedidos", estructura.Direccion, estructura.ClienteID, estructura.EmpleadoID, estructura.Valor, estructura.DetalleID, estructura.MetodoPago, id)
 				fmt.Println("Cambiado con exito")
 			case "7":
 				estructura := base.Detalle_pedidos{}
@@ -364,7 +362,7 @@ func main() {
 				fmt.Scanf("%d", &estructura.ProductoID)
 				fmt.Println("Cantidad (Numero Entero)")
 				fmt.Scanf("%d", &estructura.Cantidad)
-				base.Actualizar_sqlfi("detalle_pedidos", estructura.ProductoID, estructura.Cantidad,estructura.Id,)
+				base.Actualizar_sqlfi("detalle_pedidos", estructura.ProductoID, estructura.Cantidad, estructura.Id)
 				fmt.Println("Cambiado con exito")
 			}
 		case 4:

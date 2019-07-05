@@ -45,7 +45,7 @@ type Genero struct {
 }
 
 func Base() { //function principal donde llamamos la funcion de crear tablas etc
-	count := 50
+	count := 14
 	bar := pb.StartNew(count)
 	bar.ShowCounters = false
 	bar.ShowElapsedTime = true
@@ -384,9 +384,9 @@ func ObtenerPedidos(buscarid string) ([]Pedidos, error) {
 	defer db.Close()
 	var filas *sql.Rows
 	if buscarid != "" {
-		filas, err = db.Query(fmt.Sprintf("SELECT * FROM pedido where Id=%s", buscarid))
+		filas, err = db.Query(fmt.Sprintf("SELECT * FROM pedidos where Id=%s", buscarid))
 	} else {
-		filas, err = db.Query("SELECT * FROM pedido")
+		filas, err = db.Query("SELECT * FROM pedidos")
 	}
 
 	if err != nil {
@@ -454,59 +454,58 @@ func ImprimirDetalle_Pedidos(detalle_pedidos []Detalle_pedidos) {
 	}
 }
 
-func Actualizar_sqlp(tabla string, nombre string,generos string, valor int,plataforma string,proveedor int,id int) {
+func Actualizar_sqlp(tabla string, nombre string, generos string, valor int, plataforma string, proveedor int, id int) {
 	//
 
-	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `Nombre`='%s',`generos`='%s',`valor`='%d',`plataformas`='%s',`proveedor_id`='%d' WHERE `id`='%d';", tabla, nombre,generos,valor,plataforma,proveedor,id))
-	Execdb(fmt.Sprintf("UPDATE `%s` SET `Nombre`='%s',`generos`='%s',`valor`='%d',`plataformas`='%s',`proveedor_id`='%d' WHERE `id`='%d';", tabla, nombre,generos,valor,plataforma,proveedor,id))
+	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `Nombre`='%s',`generos`='%s',`valor`='%d',`plataformas`='%s',`proveedor_id`='%d' WHERE `id`='%d';", tabla, nombre, generos, valor, plataforma, proveedor, id))
+	Execdb(fmt.Sprintf("UPDATE `%s` SET `Nombre`='%s',`generos`='%s',`valor`='%d',`plataformas`='%s',`proveedor_id`='%d' WHERE `id`='%d';", tabla, nombre, generos, valor, plataforma, proveedor, id))
 	return
 }
 
-func Actualizar_sqlg(tabla string, genero string,id int) {
+func Actualizar_sqlg(tabla string, genero string, id int) {
 	//
 
-	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `Tipo`='%s' WHERE `id`='%d';",tabla,genero,id))
-	Execdb(fmt.Sprintf("UPDATE `%s` SET `Tipo`='%s' WHERE `id`='%d';",tabla,genero,id))
+	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `Tipo`='%s' WHERE `id`='%d';", tabla, genero, id))
+	Execdb(fmt.Sprintf("UPDATE `%s` SET `Tipo`='%s' WHERE `id`='%d';", tabla, genero, id))
 	return
 }
 
-func Actualizar_sqle(tabla string,Rut string,Nombre string,Sueldo int,Area string,Cargo string,Direccion string,Region string, id int) {//%s,%s,%d,%s,%s,%s,%s %d
+func Actualizar_sqle(tabla string, Rut string, Nombre string, Sueldo int, Area string, Cargo string, Direccion string, Region string, id int) { //%s,%s,%d,%s,%s,%s,%s %d
 	//
 
-	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `Rut`='%s',`Nombre`='%s',`Sueldo`='%d',`Area`='%s',`Cargo`='%s',`Direccion`='%s',`Region`='%s' WHERE `id`='%d;'",tabla,Rut,Nombre,Sueldo,Area,Cargo,Direccion,Region,id))
-	Execdb(fmt.Sprintf("UPDATE `%s` SET `Rut`='%s',`Nombre`='%s',`Sueldo`='%d',`Area`='%s',`Cargo`='%s',`Direccion`='%s',`Region`='%s' WHERE `id`='%d';",tabla,Rut,Nombre,Sueldo,Area,Cargo,Direccion,Region,id))
+	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `Rut`='%s',`Nombre`='%s',`Sueldo`='%d',`Area`='%s',`Cargo`='%s',`Direccion`='%s',`Region`='%s' WHERE `id`='%d;'", tabla, Rut, Nombre, Sueldo, Area, Cargo, Direccion, Region, id))
+	Execdb(fmt.Sprintf("UPDATE `%s` SET `Rut`='%s',`Nombre`='%s',`Sueldo`='%d',`Area`='%s',`Cargo`='%s',`Direccion`='%s',`Region`='%s' WHERE `id`='%d';", tabla, Rut, Nombre, Sueldo, Area, Cargo, Direccion, Region, id))
 	return
 }
 
-
-func Actualizar_sqlc(tabla string,Rut string,Nombre string,Direccion string,Region string,telefono string,id int) {//%s,%s,%s,%s,%s,%d
+func Actualizar_sqlc(tabla string, Rut string, Nombre string, Direccion string, Region string, telefono string, id int) { //%s,%s,%s,%s,%s,%d
 	//
 
-	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `Rut`='%s',`Nombre`='%s',`Direccion`='%s',`Region`='%s',`telefono`='%s' WHERE `id`='%d';",tabla,Rut,Nombre,Direccion,Region,telefono,id))
-	Execdb(fmt.Sprintf("UPDATE `%s` SET `Rut`='%s',`Nombre`='%s',`Direccion`='%s',`Region`='%s',`telefono`='%s' WHERE `id`='%d';",tabla,Rut,Nombre,Direccion,Region,telefono,id))
+	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `Rut`='%s',`Nombre`='%s',`Direccion`='%s',`Region`='%s',`telefono`='%s' WHERE `id`='%d';", tabla, Rut, Nombre, Direccion, Region, telefono, id))
+	Execdb(fmt.Sprintf("UPDATE `%s` SET `Rut`='%s',`Nombre`='%s',`Direccion`='%s',`Region`='%s',`telefono`='%s' WHERE `id`='%d';", tabla, Rut, Nombre, Direccion, Region, telefono, id))
 	return
 }
 
-func Actualizar_p(tabla string, Nombre string,Direccion string,telefono string,id int) {//"%s,%s,%s"
+func Actualizar_p(tabla string, Nombre string, Direccion string, telefono string, id int) { //"%s,%s,%s"
 	//
 
-	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `Nombre`='%s',`Direccion`='%s',`telefono`='%s' WHERE `id`='%d';",tabla,Nombre,Direccion,telefono,id))
-	Execdb(fmt.Sprintf("UPDATE `%s` SET `Nombre`='%s',`Direccion`='%s',`telefono`='%s' WHERE `id`='%d';",tabla,Nombre,Direccion,telefono,id))
+	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `Nombre`='%s',`Direccion`='%s',`telefono`='%s' WHERE `id`='%d';", tabla, Nombre, Direccion, telefono, id))
+	Execdb(fmt.Sprintf("UPDATE `%s` SET `Nombre`='%s',`Direccion`='%s',`telefono`='%s' WHERE `id`='%d';", tabla, Nombre, Direccion, telefono, id))
 	return
 }
 
-func Actualizar_sqlpe(tabla string,Direccion string,cliente_id int,empleado_id int,valor int,detalle_id int,metodo_pago string,id int) {//"%s,%d,%d,%d,%d,%s,%d"
+func Actualizar_sqlpe(tabla string, Direccion string, cliente_id int, empleado_id int, valor int, detalle_id int, metodo_pago string, id int) { //"%s,%d,%d,%d,%d,%s,%d"
 	//
 
-	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `Direccion`='%s',`cliente_id`='%d',`empleado_id`='%d',`valor`='%d',`detalle_id`='%d',`metodo_pago`='%s' WHERE `id`='%d';",tabla,Direccion,cliente_id,empleado_id,valor,detalle_id,metodo_pago,id))
-	Execdb(fmt.Sprintf("UPDATE `%s` SET `Direccion`='%s',`cliente_id`='%d',`empleado_id`='%d',`valor`='%d',`detalle_id`='%d',`metodo_pago`='%s' WHERE `id`='%d';",tabla,Direccion,cliente_id,empleado_id,valor,detalle_id,metodo_pago,id))
+	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `Direccion`='%s',`cliente_id`='%d',`empleado_id`='%d',`valor`='%d',`detalle_id`='%d',`metodo_pago`='%s' WHERE `id`='%d';", tabla, Direccion, cliente_id, empleado_id, valor, detalle_id, metodo_pago, id))
+	Execdb(fmt.Sprintf("UPDATE `%s` SET `Direccion`='%s',`cliente_id`='%d',`empleado_id`='%d',`valor`='%d',`detalle_id`='%d',`metodo_pago`='%s' WHERE `id`='%d';", tabla, Direccion, cliente_id, empleado_id, valor, detalle_id, metodo_pago, id))
 	return
 }
 
-func Actualizar_sqlfi(tabla string,id int,producto_id int,cantidad int) {//"%d,%d,%d,%d"
+func Actualizar_sqlfi(tabla string, id int, producto_id int, cantidad int) { //"%d,%d,%d,%d"
 	//
 
-	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `producto_id`='%d',`cantidad`='%d' WHERE `id`='%d';",tabla,producto_id,cantidad,id))
-	Execdb(fmt.Sprintf("UPDATE `%s` SET `producto_id`='%d',`cantidad`='%d' WHERE `id`='%d';",tabla,producto_id,cantidad,id))
+	fmt.Println(fmt.Sprintf("UPDATE `%s` SET `producto_id`='%d',`cantidad`='%d' WHERE `id`='%d';", tabla, producto_id, cantidad, id))
+	Execdb(fmt.Sprintf("UPDATE `%s` SET `producto_id`='%d',`cantidad`='%d' WHERE `id`='%d';", tabla, producto_id, cantidad, id))
 	return
 }
