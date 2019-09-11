@@ -1,7 +1,3 @@
-/*
-	Un CRUD completo de GoLang y MySQL
-	@author parzibyte
-*/
 package main
 
 import (
