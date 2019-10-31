@@ -9,6 +9,9 @@ import (
 func RemoveSlice(a *[]string, i int) {
 	*a = append((*a)[:i], (*a)[i+1:]...)
 }
+func main() {
+	ExampleTest()
+}
 
 func ExampleTest() {
 	a := []string{"holi", "jajasaludos"}

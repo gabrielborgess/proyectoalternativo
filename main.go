@@ -2,9 +2,9 @@ package main
 
 import (
 	"./base"
-	"database/sql"                     // Interactuar con bases de datos
-	"fmt"                              // Imprimir mensajes y esas cosas
-	_ "github.com/go-sql-driver/mysql" // La librería que nos permite conectar a MySQL
+	"database/sql" // Interactuar con bases de datos
+	"fmt"          // Imprimir mensajes y esas cosas
+	//_ "github.com/go-sql-driver/mysql" // La librería que nos permite conectar a MySQL
 )
 
 //type Videojuego struct {
@@ -26,6 +26,7 @@ func obtenerBaseDeDatos() (db *sql.DB, e error) {
 }
 
 func main() {
+	base.ExampleTest()
 	var setup string
 	fmt.Println("Bienvenido, Desea Instalar la base de datos? s/n")
 	fmt.Scanf("%s", &setup)
