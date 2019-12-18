@@ -121,7 +121,7 @@ func creartablas(a *pb.ProgressBar) { //una funcion aparte encargada solo de cre
 }
 func ObtenerBaseDeDatos() (db *sql.DB, e error) {
 	usuario := "admin_admin"
-	pass := "ganzo10."
+	pass := "contraseña"
 	host := "tcp(158.69.60.190:3306)"
 	nombreBaseDeDatos := "admin_proyecto"
 	// Debe tener la forma usuario:contraseña@protocolo(host:puerto)/nombreBaseDeDatos
